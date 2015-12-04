@@ -56,6 +56,7 @@ endif
 LOCAL_C_INCLUDES := bootable/recovery
 
 LOCAL_STATIC_LIBRARIES := \
+        libminui \
 	libpixelflinger_static \
 	libpng \
 	libz \
