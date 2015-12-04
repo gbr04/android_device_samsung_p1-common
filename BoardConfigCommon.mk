@@ -82,6 +82,7 @@ BOARD_V4L2_DEVICE := /dev/video1
 BOARD_CAMERA_DEVICE := /dev/video0
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 BOARD_CAMERA_HAVE_ISO := true
+COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
 # OpenGL stuff
 BOARD_EGL_CFG := device/samsung/p1-common/rootdir/system/lib/egl/egl.cfg
