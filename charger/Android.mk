@@ -64,7 +64,8 @@ LOCAL_STATIC_LIBRARIES := \
 	libcutils \
 	liblog \
 	libm \
-	libc
+	libc \
+        libutils
 
 ifeq ($(strip $(BOARD_CHARGER_ENABLE_SUSPEND)),true)
 	LOCAL_STATIC_LIBRARIES += libsuspend
