@@ -174,7 +174,6 @@ PRODUCT_PACKAGES += \
     lights.s5pc110 \
     hwcomposer.s5pc110 \
     power.s5pc110 \
-    libs3cjpeg \
     libstagefrighthw \
     libnetcmdiface \
     libstlport
