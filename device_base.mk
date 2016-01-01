@@ -170,7 +170,6 @@ PRODUCT_PACKAGES += \
 
 # HAL
 PRODUCT_PACKAGES += \
-    camera.s5pc110 \
     lights.s5pc110 \
     hwcomposer.s5pc110 \
     power.s5pc110 \
