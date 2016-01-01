@@ -176,7 +176,8 @@ PRODUCT_PACKAGES += \
     power.s5pc110 \
     libs3cjpeg \
     libstagefrighthw \
-    libnetcmdiface
+    libnetcmdiface \
+    libstlport
 
 # Packages
 PRODUCT_PACKAGES += \
