@@ -175,8 +175,7 @@ PRODUCT_PACKAGES += \
     hwcomposer.s5pc110 \
     power.s5pc110 \
     libstagefrighthw \
-    libnetcmdiface \
-    libstlport
+    libnetcmdiface
 
 # Packages
 PRODUCT_PACKAGES += \
