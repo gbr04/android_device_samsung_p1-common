@@ -1,7 +1,6 @@
 ###########################
 # OmniROM P1 sepolicy
 #
-unconfined_domain(init)
 
 allow init self:capability { sys_module };
 allow init self:process { execmem setcurrent };
