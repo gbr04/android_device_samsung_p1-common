@@ -35,6 +35,8 @@ TARGET_CPU_VARIANT := cortex-a8
 TARGET_CPU_SMP := false
 KERNEL_TOOLCHAIN := "$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/arm/arm-eabi-4.7/bin/"
 
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
+
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
@@ -123,16 +125,6 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 TARGET_BOOTANIMATION_USE_RGB565 := true
 
-# Open Source Charging Mode
-BOARD_USES_OWN_CHARGER := false
-BOARD_POWER_SUPPLY_PATH := /sys/class/power_supply
-BOARD_BATTERY_SYSFS_PATH := $(BOARD_POWER_SUPPLY_PATH)/battery
-BOARD_AC_SYSFS_PATH := $(BOARD_POWER_SUPPLY_PATH)/ac
-BOARD_USB_SYSFS_PATH := $(BOARD_POWER_SUPPLY_PATH)/usb
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../../device/samsung/p1-common/recovery/keys.c
-BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/p1-common/recovery/graphics.c
-
 # TARGET_DISABLE_TRIPLE_BUFFERING can be used to disable triple buffering
 # on per target basis. On crespo it is possible to do so in theory
 # to save memory, however, there are currently some limitations in the
@@ -170,37 +162,3 @@ TW_INTERNAL_STORAGE_PATH := "/sdcard"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "sdcard"
 TW_MAX_BRIGHTNESS := 255
 TW_BRIGHTNESS_PATH := /sys/devices/platform/s3cfb/cmc623_pwm_bl/backlight/s5p_bl/brightness
-
-# SELinux
-#BOARD_SEPOLICY_DIRS += \
-    device/samsung/p1-common/sepolicy
-
-#BOARD_SEPOLICY_UNION += \
-    bluetooth.te \
-    debuggerd.te \
-    device.te \
-    file.te \
-    file_contexts \
-    gpsd.te \
-    init.te \
-    installd.te \
-    kernel.te \
-    lvm.te \
-    mediaserver.te \
-    netd.te \
-    platform_app.te \
-    property_contexts \
-    pvrsrvinit.te \
-    radio.te \
-    recovery.te \
-    rild.te \
-    sdcardd.te \
-    servicemanager.te \
-    shared_relro.te \
-    shell.te \
-    surfaceflinger.te \
-    system_app.te \
-    system_server.te \
-    ueventd.te \
-    untrusted_app.te \
-    zygote.te
