@@ -32,7 +32,6 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a8
 TARGET_CPU_VARIANT := cortex-a8
-TARGET_CPU_SMP := false
 KERNEL_TOOLCHAIN := "$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/arm/arm-eabi-4.7/bin/"
 
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
@@ -46,10 +45,8 @@ TARGET_BOOTLOADER_BOARD_NAME := s5pc110
 
 # Bionic stuff
 BOARD_USES_LEGACY_MMAP := true
-TARGET_NEEDS_BIONIC_MD5 := true
 TARGET_NEEDS_BIONIC_PRELINK_SUPPORT := true
 TARGET_ENABLE_NON_PIE_SUPPORT := true
-MALLOC_IMPL := dlmalloc
 
 # RIL
 BOARD_USES_LIBSECRIL_STUB := true
@@ -91,6 +88,7 @@ BOARD_EGL_CFG := device/samsung/p1-common/rootdir/system/lib/egl/egl.cfg
 USE_OPENGL_RENDERER := true
 BOARD_ALLOW_EGL_HIBERNATION := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
+BOARD_EGL_NEEDS_HANDLE_VALUE=true
 BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
@@ -120,6 +118,9 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/p1-common
 # Samsung EMMC brick bug
 # Already disabled in kernel, but disable again for safety
 BOARD_SUPPRESS_EMMC_WIPE := true
+
+# Open Source Charging Mode
+BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # Boot Animation
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
