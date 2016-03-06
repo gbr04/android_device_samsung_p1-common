@@ -121,6 +121,9 @@ TARGET_USES_BLOCK_BASED_OTA := true
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/p1-common
 
+# Browser
+TARGET_USES_AOSP_BROWSER := true
+
 # Samsung EMMC brick bug
 # Already disabled in kernel, but disable again for safety
 BOARD_SUPPRESS_EMMC_WIPE := true
