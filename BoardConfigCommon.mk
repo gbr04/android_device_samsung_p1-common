@@ -34,6 +34,11 @@ TARGET_ARCH_VARIANT_CPU := cortex-a8
 TARGET_CPU_VARIANT := cortex-a8
 KERNEL_TOOLCHAIN := "$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/arm/arm-eabi-5.3/bin/"
 
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
+
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/p1-common/sepolicy
+ 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
