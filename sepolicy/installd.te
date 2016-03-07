@@ -1,6 +1,7 @@
 ###########################
-# OmniROM P1 sepolicy
+# OmniROM Aries sepolicy
 #
 allow installd datadata_file:file { create_file_perms relabelfrom relabelto };
 allow installd datadata_file:dir { create_dir_perms relabelfrom relabelto };
 allow installd datadata_file:lnk_file create_file_perms;
+allow installd kernel:system module_request;
