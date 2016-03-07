@@ -1,11 +1,8 @@
 ###########################
-# OmniROM P1 sepolicy
+# OmniROM Aries sepolicy
 #
 allow gpsd self:process { execmem };
-allow gpsd self:capability { dac_override };
 allow gpsd properties_device:file { execute };
 allow gpsd sysfs_wake_lock:file { read write open };
 allow gpsd binder_device:chr_file { execute };
-allow gpsd unlabeled:fifo_file { read open getattr };
-allow gpsd cache_file:fifo_file { read open getattr };
-
+allow gpsd kernel:system module_request;
