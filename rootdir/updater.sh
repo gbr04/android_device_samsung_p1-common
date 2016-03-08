@@ -84,6 +84,7 @@ else
     SD_PART='/dev/block/mmcblk0p1';
     MMC_PART1='/dev/block/mmcblk0p1';
     MMC_PART2='/dev/block/mmcblk0p2';
+    MMC_PART3='/dev/block/mmcblk0p3';
     EFS_PART="$(/tmp/busybox grep efs /proc/mtd | /tmp/busybox awk '{print $1}' | /tmp/busybox sed 's/://g' | /tmp/busybox sed 's/mtd/mtdblock/g')";
     RADIO_PART="$(/tmp/busybox grep radio /proc/mtd | /tmp/busybox awk '{print $1}' | /tmp/busybox sed 's/://g' | /tmp/busybox sed 's/mtd/mtdblock/g')";
     MTD_SIZE='442499072';
@@ -175,8 +176,8 @@ format_partitions() {
     /lvm/sbin/lvm lvcreate -l 100%FREE -n userdata lvpool;
 
     # format partitions
-    /tmp/make_f2fs -b 4096 -g 32768 -i 7680 -I 256 -a /system /dev/lvpool/system;
-    /tmp/make_f2fs -b 4096 -g 32768 -i 8192 -I 256 -a /data /dev/lvpool/userdata;
+    /tmp/make_f2fs -b 4096 -g 32768 -i 7680 -I 256 -a /system /dev/mapper/lvpool-system;
+    /tmp/make_f2fs -b 4096 -g 32768 -i 8192 -I 256 -a /data /dev/mapper/lvpool-userdata;
     /tmp/busybox umount -l /datadata
     /tmp/erase_image datadata
 }
@@ -187,18 +188,21 @@ setup_lvm_partitions() {
     /tmp/busybox umount -l /system;
     /tmp/busybox umount -l /data;
     /tmp/busybox umount -f -l ${MMC_PART2};
+    /tmp/busybox umount -f -l ${MMC_PART3};
 
     # remove any lvm reference
     /lvm/sbin/lvm lvremove -f lvpool;
     /lvm/sbin/lvm vgremove -f lvpool;
+    /lvm/sbin/lvm pvremove -ffy ${MMC_PART3};
     /lvm/sbin/lvm pvremove -ffy ${MMC_PART2};
 
     # force clean up
+    dd if=/dev/zero of=${MMC_PART3} bs=512 count=1;
     dd if=/dev/zero of=${MMC_PART2} bs=512 count=1;
 
     # create lvm phisical volumes and lvpool group
-    /lvm/sbin/lvm pvcreate ${MMC_PART2};
-    /lvm/sbin/lvm vgcreate lvpool ${MMC_PART2};
+    /lvm/sbin/lvm pvcreate ${MMC_PART3} ${MMC_PART2};
+    /lvm/sbin/lvm vgcreate lvpool ${MMC_PART3} ${MMC_PART2};
 }
 
 # backup /efs partition
