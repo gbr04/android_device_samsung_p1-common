@@ -162,10 +162,9 @@ PRODUCT_PACKAGES += \
     libOMX.SEC.M4V.Encoder \
     libOMX.SEC.AVC.Encoder
 
-# Open Source Charging Mode
+# Charger
 PRODUCT_PACKAGES += \
-    device_healthd \
-    device_healthd_images
+    charger_res_images
 
 # HAL
 PRODUCT_PACKAGES += \
