@@ -6,13 +6,14 @@ on init
     export LD_LIBRARY_PATH .:/sbin
 
 on fs
-
 #   LVM: set up LVM volumes
     wait /sys/dev/block/179:0
-    exec /lvm/sbin/lvm vgscan --mknodes --ignorelockingfailure
-    exec /lvm/sbin/lvm vgchange -aly --ignorelockingfailure
-    restorecon /dev/mapper/lvpool-system
-    restorecon /dev/mapper/lvpool-userdata
+    start lvm_init
+
+service lvm_init /sbin/lvm_init_recovery.sh
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0
 
 on post-fs
 
