@@ -2116,6 +2116,11 @@ CameraParameters CameraHardwareSec::getParameters() const
 
 status_t CameraHardwareSec::sendCommand(int32_t command, int32_t arg1, int32_t arg2)
 {
+    if (command == CAMERA_CMD_ENABLE_FOCUS_MOVE_MSG) {
+        // We don't support focus move callback, but AOSP Camera wants to use it.
+        // Pretend there's no error so Camera doesn't crash
+        return NO_ERROR;
+    }
     return BAD_VALUE;
 }
 
