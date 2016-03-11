@@ -817,7 +817,7 @@ int SecCamera::stopPreview(void)
     }
 
     if (m_params->flash_mode == FLASH_MODE_TORCH)
-        setFlashMode(FLASH_MODE_ON);
+        setFlashMode(FLASH_MODE_OFF);
 
     if (m_cam_fd <= 0) {
         ALOGE("ERR(%s):Camera was closed\n", __func__);
