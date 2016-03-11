@@ -152,6 +152,7 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
+    audio.primary.s5pc110 \
     audio.usb.default
 
 # These are the OpenMAX IL modules
