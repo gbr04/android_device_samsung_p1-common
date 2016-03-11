@@ -795,7 +795,7 @@ struct pcm *AudioHardware::openPcmOut_l()
            .start_threshold = 0;
            .stop_threshold = 0;
            .silence_threshold = 0;
-           .avail_min = 0
+           .avail_min = 0;
 };
 
         TRACE_DRIVER_IN(DRV_PCM_OPEN)
