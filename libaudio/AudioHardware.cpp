@@ -787,16 +787,15 @@ struct pcm *AudioHardware::openPcmOut_l()
         unsigned flags = PCM_OUT;
 
         struct pcm_config config = {
-           .channels = 2;
-           .rate = AUDIO_HW_OUT_SAMPLERATE;
-           .period_size = AUDIO_HW_OUT_PERIOD_SZ;
-           .period_count = AUDIO_HW_OUT_PERIOD_CNT;
-           .format = PCM_FORMAT_S16_LE;
-           .start_threshold = 0;
-           .stop_threshold = 0;
-           .silence_threshold = 0;
-           .avail_min = 0;
-};
+            channels : 2,
+            rate : AUDIO_HW_OUT_SAMPLERATE,
+            period_size : AUDIO_HW_OUT_PERIOD_SZ,
+            period_count : AUDIO_HW_OUT_PERIOD_CNT,
+            format : PCM_FORMAT_S16_LE,
+            start_threshold : 0,
+            stop_threshold : 0,
+            silence_threshold : 0,
+        };
 
         TRACE_DRIVER_IN(DRV_PCM_OPEN)
         mPcm = pcm_open(0, 0, flags, &config);
