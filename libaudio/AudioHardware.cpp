@@ -795,7 +795,6 @@ struct pcm *AudioHardware::openPcmOut_l()
             start_threshold : 0,
             stop_threshold : 0,
             silence_threshold : 0,
-            avail_min = 0,
         };
 
         TRACE_DRIVER_IN(DRV_PCM_OPEN)
@@ -1967,16 +1966,15 @@ status_t AudioHardware::AudioStreamInALSA::open_l()
     unsigned flags = PCM_IN;
 
     struct pcm_config config = {
-       .channels = mChannelCount;
-       .rate = AUDIO_HW_IN_SAMPLERATE;
-       .period_size = AUDIO_HW_IN_PERIOD_SZ;
-       .period_count = AUDIO_HW_IN_PERIOD_CNT;
-       .format = PCM_FORMAT_S16_LE;
-       .start_threshold = 0;
-       .stop_threshold = 0;
-       .silence_threshold = 0;
-       .avail_min = 0;
-};
+        channels : mChannelCount,
+        rate : AUDIO_HW_IN_SAMPLERATE,
+        period_size : AUDIO_HW_IN_PERIOD_SZ,
+        period_count : AUDIO_HW_IN_PERIOD_CNT,
+        format : PCM_FORMAT_S16_LE,
+        start_threshold : 0,
+        stop_threshold : 0,
+        silence_threshold : 0,
+    };
 
     ALOGV("open pcm_in driver");
     TRACE_DRIVER_IN(DRV_PCM_OPEN)
