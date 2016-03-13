@@ -84,7 +84,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.media.legacy-drm=1
+    persist.sys.media.legacy-drm=1 \
+    media.stagefright.use-awesome=true \
+    persist.sys.NV_FPSLIMIT=60  \
+    ro.min.fling_velocity=8000 \
+    persist.service.pcsync.enable=0 \
+    persist.service.lgospd.enable=0 \
+    ro.config.hw_quickpoweron=true \
+    windowsmgr.max_events_per_sec=150 \
+    debug.performance.tuning=1
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
