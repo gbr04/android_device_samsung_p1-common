@@ -92,7 +92,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.service.lgospd.enable=0 \
     ro.config.hw_quickpoweron=true \
     windowsmgr.max_events_per_sec=150 \
-    debug.performance.tuning=1
+    debug.performance.tuning=1 \
+    pm.sleep_mode=1 \
+    debug.kill_allocating_task=0
+
+# Force dex2oat to not use swap file
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-swap=false
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
