@@ -33,6 +33,8 @@ import org.omnirom.device.R;
 
 public class BigmemFragmentActivity extends PreferenceFragment {
 
+    private static final String FILE = "/sys/kernel/bigmem/enable";
+
     private static final String TAG = "DeviceSettings_Bigmem";
 
     private ListPreference mBigmem;
