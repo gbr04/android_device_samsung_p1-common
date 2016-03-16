@@ -19,10 +19,14 @@ package org.omnirom.device;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 
 public class Bigmem implements OnPreferenceChangeListener {
 
