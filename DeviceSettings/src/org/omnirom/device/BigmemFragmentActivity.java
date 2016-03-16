@@ -31,7 +31,7 @@ import android.util.Log;
 
 import org.omnirom.device.R;
 
-public class BigmemFragmentActivity implements PreferenceFragment {
+public class BigmemFragmentActivity extends PreferenceFragment {
 
     private static final String TAG = "DeviceSettings_Bigmem";
 
@@ -47,7 +47,7 @@ public class BigmemFragmentActivity implements PreferenceFragment {
 
         mBigmem = (ListPreference) findPreference(DeviceSettings.KEY_BIGMEM);
         mBigmem.setEnabled(Bigmem.isSupported());
-        mBigmem.setOnPreferenceChangeListener(new Bigmem(getActivity()));
+        mBigmem.setOnPreferenceChangeListener(new Bigmem());
     }
 
     public static boolean isSupported() {
