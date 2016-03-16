@@ -94,7 +94,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     windowsmgr.max_events_per_sec=150 \
     debug.performance.tuning=1 \
     pm.sleep_mode=1 \
-    debug.kill_allocating_task=0
+    debug.kill_allocating_task=0 \
+    dalvik.vm.dexopt-flag=o=y,m=y
 
 # Force dex2oat to not use swap file
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -142,11 +143,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # ART
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.image-dex2oat-Xms=16m \
-    dalvik.vm.image-dex2oat-Xmx=64m \
-    dalvik.vm.dex2oat-Xms=64m \
-    dalvik.vm.dex2oat-Xmx=128m \
-    ro.dalvik.vm.native.bridge=0 \
+    dalvik.vm.dex2oat-Xms=8m \
+    dalvik.vm.dex2oat-Xmx=96m \
+    dalvik.vm.image-dex2oat-Xms=48m \
+    dalvik.vm.image-dex2oat-Xmx=48m \
+    dalvik.vm.dex2oat-flags=--no-watch-dog \
     dalvik.vm.dex2oat-filter=interpret-only \
     dalvik.vm.image-dex2oat-filter=speed
 
@@ -215,10 +216,14 @@ PRODUCT_PACKAGES += \
 # ART
 PRODUCT_DEX_PREOPT_DEFAULT_FLAGS := \
     --compiler-filter=interpret-only
-$(call add-product-dex-preopt-module-config,services,--compiler-filter=speed)
+
+# we have enough storage space to hold precise GC data
+PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Virtual machine setup
 include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
+
+$(call add-product-dex-preopt-module-config,services,--compiler-filter=speed)
 
 # broadcom wlan
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
