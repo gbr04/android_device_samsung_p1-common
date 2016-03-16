@@ -28,7 +28,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 
-public class Bigmem implements OnPreferenceChangeListener {
+public class BigmemFragmentActivity implements PreferenceFragment {
 
     private static final String FILE = "/sys/kernel/bigmem/enable";
 
