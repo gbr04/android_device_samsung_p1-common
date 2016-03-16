@@ -44,9 +44,9 @@ public class BigmemFragmentActivity implements PreferenceFragment {
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mBigmem = (ListPreference) findPreference(KEY_BIGMEM);
+        mBigmem = (ListPreference) findPreference(DeviceSettings.KEY_BIGMEM);
         mBigmem.setEnabled(Bigmem.isSupported());
-        mBigmem.setOnPreferenceChangeListener(new Bigmem());
+        mBigmem.setOnPreferenceChangeListener(new Bigmem(getActivity()));
     }
 
     public static boolean isSupported() {
