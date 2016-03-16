@@ -38,19 +38,13 @@ public class VibratorTuningPreference extends DialogPreference implements OnClic
 
     private static final String TAG = "vibrator...";
 
-    private static final int[] SEEKBAR_ID = new int[] {
-        R.id.vibrator_seekbar
-    };
+    private static final int SEEKBAR_ID = R.id.vibration_seekbar;
 
-    private static final int[] VALUE_DISPLAY_ID = new int[] {
-        R.id.vibrator_value
-    };
+    private static final int VALUE_DISPLAY_ID = R.id.vibration_value;
 
-    private static final String[] FILE_PATH = new String[] {
-        "/sys/class/misc/pwm_duty/pwm_duty",
-    };
+    private static final String FILE_PATH = "/sys/class/misc/pwm_duty/pwm_duty";
 
-    private vibratorSeekBar mSeekBars[] = new vibratorSeekBar[1];
+    private VibrationSeekBar mSeekBar = new VibrationSeekBar();
 
     private static final int MAX_VALUE = 100;
 
