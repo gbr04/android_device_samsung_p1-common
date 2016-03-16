@@ -29,10 +29,15 @@ public class Bigmem implements OnPreferenceChangeListener {
 
     private ListPreference mBigmem;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         mBigmem = (ListPreference) findPreference(KEY_BIGMEM);
         mBigmem.setEnabled(Bigmem.isSupported());
         mBigmem.setOnPreferenceChangeListener(new Bigmem());
- 
+    }
+
     public static boolean isSupported() {
         return Utils.fileExists(FILE);
     }
