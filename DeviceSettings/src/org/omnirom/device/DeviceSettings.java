@@ -43,6 +43,7 @@ public class DeviceSettings extends Activity {
     public static final String SHARED_PREFERENCES_BASENAME = "org.omnirom.device";
     public static final String ACTION_UPDATE_PREFERENCES = "org.omnirom.device.UPDATE";
     public static final String KEY_CATEGORY_RADIO = "category_radio";
+    public static final String KEY_BIGMEM = "bigmem";
     public static final String KEY_HSPA = "hspa";
     public static final String KEY_TVOUT_ENABLE = "tvout_enable";
     public static final String KEY_TVOUT_SYSTEM = "tvout_system";
@@ -72,7 +73,10 @@ public class DeviceSettings extends Activity {
         mTabsAdapter = new TabsAdapter(this, mViewPager);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.category_buttons_title),
                 ButtonFragmentActivity.class, null);
-        
+
+        mTabsAdapter.addTab(bar.newTab().setText(R.string.category_bigmem_title),
+                BigmemFragmentActivity.class, null);
+
         mTabsAdapter.addTab(bar.newTab().setText(R.string.category_radio_title),
                 RadioFragmentActivity.class, null);
         /*
