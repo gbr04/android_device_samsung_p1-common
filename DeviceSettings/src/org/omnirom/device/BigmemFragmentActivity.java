@@ -27,10 +27,11 @@ import android.preference.PreferenceFragment;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.util.Log;
+
+import org.omnirom.device.R;
 
 public class BigmemFragmentActivity implements PreferenceFragment {
-
-    private static final String FILE = "/sys/kernel/bigmem/enable";
 
     private ListPreference mBigmem;
 
@@ -62,12 +63,6 @@ public class BigmemFragmentActivity implements PreferenceFragment {
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_BIGMEM, "0"));
-    }
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        Utils.writeValue(FILE, (String) newValue);
-        return true;
     }
 
 }
