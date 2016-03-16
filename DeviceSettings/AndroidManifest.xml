@@ -57,7 +57,7 @@
         <activity android:name=".RadioFragmentActivity" />
         <!-- activity android:name=".TVFragmentActivity" / -->
         <activity android:name=".VibratorFragmentActivity" />
-        <activity android:name=".BigmemFragmentActivity.java" />
+        <activity android:name=".BigmemFragmentActivity" />
 
         <!-- service android:name=".TvOutService" / -->
 
