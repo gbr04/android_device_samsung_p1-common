@@ -217,9 +217,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEX_PREOPT_DEFAULT_FLAGS := \
     --compiler-filter=interpret-only
 
-# we have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
 # Virtual machine setup
 include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
 
