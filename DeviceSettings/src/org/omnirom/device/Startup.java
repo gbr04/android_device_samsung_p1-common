@@ -26,6 +26,8 @@ public class Startup extends BroadcastReceiver {
     public void onReceive(final Context context, final Intent bootintent) {
         ToggleCapacitiveKeys.restore(context);
         TouchKeyBacklightTimeout.restore(context);
+        Bigmem.restore(context);
+        Hspa.restore(context);
         VibratorTuningPreference.restore(context);
         Sanity.check(context);
     }
