@@ -27,6 +27,8 @@ public class Bigmem implements OnPreferenceChangeListener {
 
     private static final String FILE = "/sys/kernel/bigmem/enable";
 
+    private ListPreference mBigmem;
+
     public static boolean isSupported() {
         return Utils.fileExists(FILE);
     }
