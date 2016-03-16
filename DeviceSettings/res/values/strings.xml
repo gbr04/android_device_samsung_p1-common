@@ -39,7 +39,7 @@
     
     <string name="category_bigmem_title">Bigmem</string>
     <string name="bigmem_title_head">Bigmem</string>
-    <string name="bigmem_summary_head">Enable or disable Bigmem which breaks 720p video recording</string>
+    <string name="bigmem_summary_head">Increases available RAM but may break things (requires reboot)</string>
 
     <string name="category_vibrator_tuning_title">Vibration</string>
     <string name="vibrator_tuning_title_head">Vibrator feedback tuning</string>
