@@ -32,6 +32,8 @@ import org.omnirom.device.R;
 
 public class BigmemFragmentActivity implements PreferenceFragment {
 
+    private static final String TAG = "DeviceSettings_Bigmem";
+
     private ListPreference mBigmem;
 
     @Override
