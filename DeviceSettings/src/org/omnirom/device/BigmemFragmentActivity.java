@@ -33,6 +33,10 @@ public class Bigmem implements OnPreferenceChangeListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        addPreferencesFromResource(R.xml.bigmem_preferences);
+
+        PreferenceScreen prefSet = getPreferenceScreen();
+
         mBigmem = (ListPreference) findPreference(KEY_BIGMEM);
         mBigmem.setEnabled(Bigmem.isSupported());
         mBigmem.setOnPreferenceChangeListener(new Bigmem());
