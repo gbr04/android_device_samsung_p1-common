@@ -93,7 +93,7 @@ AudioHardware::AudioHardware() :
     mInCallAudioMode(false),
     mVoiceVol(1.0f),
     mInputSource(AUDIO_SOURCE_DEFAULT),
-    mBluetoothNrec(false),
+    mBluetoothNrec(true),
     mTTYMode(TTY_MODE_OFF),
     mSecRilLibHandle(NULL),
     mRilClient(0),
