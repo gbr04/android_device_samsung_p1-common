@@ -6,14 +6,13 @@ on init
     export LD_LIBRARY_PATH .:/sbin
 
 on fs
-
 #   LVM: set up LVM volumes
-    wait /sys/dev/block/179:0
-    start lvm_vgscan
-    start lvm_vgchange
+    start lvm_init
 
-    restorecon /dev/mapper/lvpool-system
-    restorecon /dev/mapper/lvpool-userdata
+service lvm_init /sbin/lvm_init_recovery.sh
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0
 
 on post-fs
 
@@ -33,16 +32,3 @@ on boot
 
     # mass_storage support
     setprop sys.usb.config mass_storage,adb
-
-# LVM services
-# Scan for LVM physical volumes and set up volume groups
-service lvm_vgscan /lvm/sbin/lvm vgscan --mknodes --ignorelockingfailure
-    seclabel u:r:lvm:s0
-    disabled
-    oneshot
-
-# Activate LVM logical volumes in found volume groups
-service lvm_vgchange /lvm/sbin/lvm vgchange -aly --ignorelockingfailure
-    seclabel u:r:lvm:s0
-    disabled
-    oneshot
