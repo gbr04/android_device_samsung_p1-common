@@ -153,7 +153,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Set default property for USB protocol
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp \
+    ro.vold.primary_physical=1
 
 # SELinux
 PRODUCT_PROPERTY_OVERRIDES += \
