@@ -31,8 +31,7 @@ import android.util.Log;
 import android.os.Vibrator;
 
 /**
- * Special preference type that allows configuration of both the ring volume and
- * notification volume.
+ * Special preference type that allows configuration of vibrator strength.
  */
 public class VibratorTuningPreference extends DialogPreference implements OnClickListener {
 
@@ -56,8 +55,8 @@ public class VibratorTuningPreference extends DialogPreference implements OnClic
 
     private static final int OFFSET_VALUE = 0;
 
-    // Track instances to know when to restore original color
-    // (when the orientation changes, a new dialog is created before the old one
+    // Track instances to know when to restore original value
+    // (when the vibrator strength changes, a new dialog is created before the old one
     // is destroyed)
     private static int sInstances = 0;
 
@@ -110,7 +109,7 @@ public class VibratorTuningPreference extends DialogPreference implements OnClic
     }
 
     /**
-     * Restore screen color tuning from SharedPreferences. (Write to kernel.)
+     * Restore vibrator tuning from SharedPreferences. (Write to kernel.)
      *
      * @param context The context to read the SharedPreferences from
      */
@@ -141,7 +140,7 @@ public class VibratorTuningPreference extends DialogPreference implements OnClic
     /**
      * Check whether the running kernel supports color tuning or not.
      *
-     * @return Whether color tuning is supported or not
+     * @return Whether vibrator tuning is supported or not
      */
     public static boolean isSupported() {
         boolean supported = true;
