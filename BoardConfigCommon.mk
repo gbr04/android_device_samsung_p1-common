@@ -53,6 +53,9 @@ TARGET_ENABLE_NON_PIE_SUPPORT := true
 
 # Use longer timeouts for slow CPU
 TARGET_NEEDS_LONG_TIMEOUTS := true
+
+# Don't include live wallpapers, they take too much cpu and ram plus space
+TARGET_EXCLUDE_LIVEWALLPAPERS := true
  
 # RIL
 BOARD_USES_LIBSECRIL_STUB := true
