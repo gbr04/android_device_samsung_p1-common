@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.cyanogenmod.device;
+package com.cyanogenmod.settings.device;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -28,7 +28,7 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.util.Log;
 
-import org.cyanogenmod.device.R;
+import com.cyanogenmod.settings.device.R;
 
 public class ButtonFragmentActivity extends PreferenceFragment {
 
