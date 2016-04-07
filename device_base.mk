@@ -168,6 +168,7 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
+    audio.primary.s5pc110 \
     audio.usb.default
 
 # These are the OpenMAX IL modules
@@ -196,7 +197,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     pvrsrvinit \
     DeviceSettings \
-    OmniTorch \
     com.android.future.usb.accessory
 
 # Wi-Fi
