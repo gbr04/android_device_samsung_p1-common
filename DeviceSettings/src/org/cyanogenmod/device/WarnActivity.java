@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.omnirom.device;
+package org.cyanogenmod.device;
 
 import android.os.Bundle;
 import android.content.Intent;
