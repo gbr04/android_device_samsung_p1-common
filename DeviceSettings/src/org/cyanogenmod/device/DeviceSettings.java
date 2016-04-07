@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.omnirom.device;
+package org.cyanogenmod.device;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -34,14 +34,14 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
-import org.omnirom.device.R;
+import org.cyanogenmod.device.R;
 
 import java.util.ArrayList;
 
 public class DeviceSettings extends Activity {
 
-    public static final String SHARED_PREFERENCES_BASENAME = "org.omnirom.device";
-    public static final String ACTION_UPDATE_PREFERENCES = "org.omnirom.device.UPDATE";
+    public static final String SHARED_PREFERENCES_BASENAME = "org.cyanogenmod.device";
+    public static final String ACTION_UPDATE_PREFERENCES = "org.cyanogenmod.device.UPDATE";
     public static final String KEY_CATEGORY_RADIO = "category_radio";
     public static final String KEY_BIGMEM = "bigmem";
     public static final String KEY_HSPA = "hspa";
