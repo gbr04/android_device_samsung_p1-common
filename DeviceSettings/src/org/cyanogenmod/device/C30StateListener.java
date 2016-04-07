@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.omnirom.device;
+package org.cyanogenmod.device;
 
 public interface C30StateListener {
 	public boolean onStateChange(Object obj, Object state);
