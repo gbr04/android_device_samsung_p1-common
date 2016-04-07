@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.omnirom.device;
+package org.cyanogenmod.device;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -28,7 +28,7 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.util.Log;
 
-import org.omnirom.device.R;
+import org.cyanogenmod.device.R;
 
 public class ButtonFragmentActivity extends PreferenceFragment {
 
