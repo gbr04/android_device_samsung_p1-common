@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.cyanogenmod.device;
+package com.cyanogenmod.settings.device;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -34,14 +34,14 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
-import org.cyanogenmod.device.R;
+import com.cyanogenmod.settings.device.R;
 
 import java.util.ArrayList;
 
 public class DeviceSettings extends Activity {
 
-    public static final String SHARED_PREFERENCES_BASENAME = "org.cyanogenmod.device";
-    public static final String ACTION_UPDATE_PREFERENCES = "org.cyanogenmod.device.UPDATE";
+    public static final String SHARED_PREFERENCES_BASENAME = "com.cyanogenmod.settings.device";
+    public static final String ACTION_UPDATE_PREFERENCES = "com.cyanogenmod.settings.device.UPDATE";
     public static final String KEY_CATEGORY_RADIO = "category_radio";
     public static final String KEY_BIGMEM = "bigmem";
     public static final String KEY_HSPA = "hspa";
