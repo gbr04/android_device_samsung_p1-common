@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.omnirom.device;
+package org.cyanogenmod.device;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
