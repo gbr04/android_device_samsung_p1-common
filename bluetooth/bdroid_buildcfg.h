@@ -20,8 +20,10 @@
 
 #define BTM_DEF_LOCAL_NAME "Samsung Galaxy Tab"
 
+#define PAN_NAP_DISABLED TRUE
 #define BLE_INCLUDED FALSE
 #define BTA_GATT_INCLUDED FALSE
 #define SMP_INCLUDED FALSE
+#define REMOVE_EAGER_THREADS FALSE
 
 #endif
