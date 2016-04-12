@@ -197,7 +197,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     pvrsrvinit \
     DeviceSettings \
-    com.android.future.usb.accessory
+    com.android.future.usb.accessory \
+    Snap
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
