@@ -59,7 +59,7 @@ TARGET_EXCLUDE_LIVEWALLPAPERS := true
  
 # RIL
 BOARD_USES_LIBSECRIL_STUB := true
-BOARD_RIL_CLASS := ../../../device/samsung/p1-common/ril/
+BOARD_RIL_CLASS := ../../../hardware/samsung/exynos3/s5pc110/ril/
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
