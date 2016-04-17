@@ -40,7 +40,7 @@ import com.cyanogenmod.settings.device.R;
 
 import java.util.ArrayList;
 
-public class DeviceSettings extends Activity {
+public class DeviceSettings extends PreferenceActivity {
 
     public static final String SHARED_PREFERENCES_BASENAME = "com.cyanogenmod.settings.device";
     public static final String ACTION_UPDATE_PREFERENCES = "com.cyanogenmod.settings.device.UPDATE";
