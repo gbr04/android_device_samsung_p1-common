@@ -30,6 +30,11 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.MenuItem;
+import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 
 import com.cyanogenmod.settings.device.R;
 
@@ -72,13 +77,13 @@ public class DeviceSettings extends Activity {
         if (Hspa.isSupported()) {
            mHspa.setOnPreferenceChangeListener(new Hspa(this));
         } else {
-           PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().findPreference(KEY_HSPA_CATEGORY);
+           PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().findPreference(KEY_HSPA);
            category.removePreference(mHspa);
            getPreferenceScreen().removePreference(category);
         }
 
-        mVibration = (VibrationPreference) findPreference(KEY_VIBRATOR_TUNING);
-        mVibration.setEnabled(VibrationPreference.isSupported());
+        mVibratorTuning = (VibratorTuningPreference) findPreference(KEY_VIBRATOR_TUNING);
+        mVibratorTuning.setEnabled(VibratorTuningPreference.isSupported());
     }
 
     @Override
