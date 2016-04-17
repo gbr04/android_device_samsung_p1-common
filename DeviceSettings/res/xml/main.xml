@@ -25,14 +25,15 @@
 			android:entryValues="@array/bigmem_entries_values"
 			android:defaultValue="0" />
 	</PreferenceCategory>
-	
+
+	<PreferenceCategory
+	android:title="@string/category_buttons_title">	
     <CheckBoxPreference
         android:key="buttons_disable"
         android:title="@string/capacitive_buttons_title"
         android:summary="@string/capacitive_buttons_summary"
         android:disableDependentsState="true"
         android:defaultValue="false" />
-
     <ListPreference
         android:key="backlight_timeout"
         android:title="@string/backlight_timeout_title_head"
@@ -41,7 +42,10 @@
         android:entryValues="@array/backlight_timeout_entries_values"
         android:defaultValue="1600"
         android:dependency="buttons_disable" />
-
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="@string/category_radio_title"
     <ListPreference
         android:key="hspa"
         android:title="@string/hspa_title_head"
@@ -49,7 +53,8 @@
         android:entries="@array/hspa_entries"
         android:entryValues="@array/hspa_entries_values"
         android:defaultValue="23" />
-	
+    </PreferenceCategory>
+
 	    <!-- General settings -->
     <PreferenceCategory 
         android:key="category_hardware"
