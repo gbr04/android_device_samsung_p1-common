@@ -54,7 +54,8 @@ public class DeviceSettings extends PreferenceActivity {
     public static final String KEY_BUTTONS = "buttons_category";
     public static final String KEY_BACKLIGHT_TIMEOUT = "backlight_timeout";
     public static final String KEY_VIBRATOR_TUNING = "vibrator_tuning";
-
+    
+    private CheckBoxPreference mDisableButtons;
     private ListPreference mBacklightTimeout;
     private ListPreference mBigmem;
     private ListPreference mHspa;
@@ -65,6 +66,10 @@ public class DeviceSettings extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.main);
 
+        mDisableButtons = (CheckBoxPreference) findPreference(KEY_BUTTONS_DISABLE);
+        mDisableButtons.setEnabled(ToggleCapacitiveKeys.isSupported());
+        mDisableButtons.setOnPreferenceChangeListener(new ToggleCapacitiveKeys());
+        
         mBacklightTimeout = (ListPreference) findPreference(KEY_BACKLIGHT_TIMEOUT);
         mBacklightTimeout.setEnabled(TouchKeyBacklightTimeout.isSupported());
         mBacklightTimeout.setOnPreferenceChangeListener(new TouchKeyBacklightTimeout());
