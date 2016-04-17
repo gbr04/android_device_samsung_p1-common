@@ -53,7 +53,7 @@ public class DeviceSettings extends Activity {
     private ListPreference mBacklightTimeout;
     private ListPreference mBigmem;
     private ListPreference mHspa;
-    private VibrationPreference mVibratorTuning;
+    private VibratorTuningPreference mVibratorTuning;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
