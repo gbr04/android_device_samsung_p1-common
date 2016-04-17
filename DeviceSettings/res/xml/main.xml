@@ -26,8 +26,7 @@
 			android:defaultValue="0" />
 	</PreferenceCategory>
 	
-	<PreferenceCategory	
-	    <CheckBoxPreference
+    <CheckBoxPreference
         android:key="buttons_disable"
         android:title="@string/capacitive_buttons_title"
         android:summary="@string/capacitive_buttons_summary"
@@ -42,17 +41,14 @@
         android:entryValues="@array/backlight_timeout_entries_values"
         android:defaultValue="1600"
         android:dependency="buttons_disable" />
-	</PreferenceCategory>
-	
-	<PreferenceCategory		
-	    <ListPreference
+
+    <ListPreference
         android:key="hspa"
         android:title="@string/hspa_title_head"
         android:summary="@string/hspa_summary_head"
         android:entries="@array/hspa_entries"
         android:entryValues="@array/hspa_entries_values"
         android:defaultValue="23" />
-	</PreferenceCategory>
 	
 	    <!-- General settings -->
     <PreferenceCategory 
