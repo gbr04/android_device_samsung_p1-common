@@ -50,134 +50,49 @@ public class DeviceSettings extends Activity {
     public static final String KEY_BACKLIGHT_TIMEOUT = "backlight_timeout";
     public static final String KEY_VIBRATOR_TUNING = "vibrator_tuning";
 
-    ViewPager mViewPager;
-    TabsAdapter mTabsAdapter;
+    private ListPreference mBacklightTimeout;
+    private ListPreference mBigmem;
+    private ListPreference mHspa;
+    private VibrationPreference mVibratorTuning;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.main);
 
-        mViewPager = new ViewPager(this);
-        mViewPager.setId(R.id.viewPager);
-        setContentView(mViewPager);
+        mBacklightTimeout = (ListPreference) findPreference(KEY_BACKLIGHT_TIMEOUT);
+        mBacklightTimeout.setEnabled(TouchKeyBacklightTimeout.isSupported());
+        mBacklightTimeout.setOnPreferenceChangeListener(new TouchKeyBacklightTimeout());
 
-        final ActionBar bar = getActionBar();
-        bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE, ActionBar.DISPLAY_SHOW_TITLE);
-        bar.setTitle(R.string.app_name);
-        bar.setDisplayHomeAsUpEnabled(true);
+        mBigmem = (ListPreference) findPreference(KEY_BIGMEM);
+        mBigmem.setEnabled(Bigmem.isSupported());
+        mBigmem.setOnPreferenceChangeListener(new Bigmem());
 
-        mTabsAdapter = new TabsAdapter(this, mViewPager);
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.category_buttons_title),
-                ButtonFragmentActivity.class, null);
-
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.category_bigmem_title),
-                BigmemFragmentActivity.class, null);
-
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.category_radio_title),
-                RadioFragmentActivity.class, null);
-        /*
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.category_tvout_title),
-                TVFragmentActivity.class, null);
-        */
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.category_vibrator_tuning_title),
-                VibratorFragmentActivity.class, null);
-        if (savedInstanceState != null) {
-            bar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
+        mHspa = (ListPreference) findPreference(KEY_HSPA);
+        if (Hspa.isSupported()) {
+           mHspa.setOnPreferenceChangeListener(new Hspa(this));
+        } else {
+           PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().findPreference(KEY_HSPA_CATEGORY);
+           category.removePreference(mHspa);
+           getPreferenceScreen().removePreference(category);
         }
+
+        mVibration = (VibrationPreference) findPreference(KEY_VIBRATOR_TUNING);
+        mVibration.setEnabled(VibrationPreference.isSupported());
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
-    }
-
-    public static class TabsAdapter extends FragmentPagerAdapter
-            implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
-        private final Context mContext;
-        private final ActionBar mActionBar;
-        private final ViewPager mViewPager;
-        private final ArrayList<TabInfo> mTabs = new ArrayList<TabInfo>();
-
-        static final class TabInfo {
-            private final Class<?> clss;
-            private final Bundle args;
-
-            TabInfo(Class<?> _class, Bundle _args) {
-                clss = _class;
-                args = _args;
-            }
-        }
-
-        public TabsAdapter(Activity activity, ViewPager pager) {
-            super(activity.getFragmentManager());
-            mContext = activity;
-            mActionBar = activity.getActionBar();
-            mViewPager = pager;
-            mViewPager.setAdapter(this);
-            mViewPager.setOnPageChangeListener(this);
-        }
-
-        public void addTab(ActionBar.Tab tab, Class<?> clss, Bundle args) {
-            TabInfo info = new TabInfo(clss, args);
-            tab.setTag(info);
-            tab.setTabListener(this);
-            mTabs.add(info);
-            mActionBar.addTab(tab);
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public int getCount() {
-            return mTabs.size();
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            TabInfo info = mTabs.get(position);
-            return Fragment.instantiate(mContext, info.clss.getName(), info.args);
-        }
-
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            mActionBar.setSelectedNavigationItem(position);
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-        }
-
-        @Override
-        public void onTabSelected(Tab tab, FragmentTransaction ft) {
-            Object tag = tab.getTag();
-            for (int i=0; i<mTabs.size(); i++) {
-                if (mTabs.get(i) == tag) {
-                    mViewPager.setCurrentItem(i);
-                }
-            }
-        }
-
-        @Override
-        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-        }
-
-        @Override
-        public void onTabReselected(Tab tab, FragmentTransaction ft) {
-        }
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case android.R.id.home:
-            DeviceSettings.this.onBackPressed();
-        default:
-            return super.onOptionsItemSelected(item);
-        }
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
