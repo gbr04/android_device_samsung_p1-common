@@ -51,7 +51,7 @@ BTMAC=$(getprop ril.bt_macaddr)
 if [ -n "$BTMAC" ]; then
 
   # write bluetooth mac
-  echo -n $(echo $BTMAC | cut -f2 -d: | sed 's/\(..\)/\1:/g;s/:$//') > /data/.nvram_btmac
+  echo -n $(echo $BTMAC | cut -f2 -d: | sed -r 's/\(..\)/\1:/g;s/:$//') > /data/.nvram_btmac
   chown bluetooth.net_bt_stack /data/.nvram_btmac
   chmod 0664 /data/.nvram_btmac
 
