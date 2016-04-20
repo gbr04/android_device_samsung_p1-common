@@ -159,6 +159,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
+# Use high-end graphics to work around notification bug
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.force_highendgfx=true
+ 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     setup_fs \
