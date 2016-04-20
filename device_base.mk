@@ -85,7 +85,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.media.legacy-drm=1 \
-    media.stagefright.use-awesome=true \
     persist.sys.NV_FPSLIMIT=60  \
     ro.min.fling_velocity=8000 \
     persist.service.pcsync.enable=0 \
