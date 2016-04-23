@@ -34,8 +34,7 @@ LOCAL_SHARED_LIBRARIES:= \
 	libutils \
 	libhardware_legacy \
 	libtinyalsa \
-	libaudioutils \
-	libcutils
+	libaudioutils
 
 LOCAL_WHOLE_STATIC_LIBRARIES := libaudiohw_legacy
 LOCAL_MODULE_TAGS := optional
