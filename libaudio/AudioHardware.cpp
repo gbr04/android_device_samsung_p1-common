@@ -32,6 +32,10 @@
 #include <dlfcn.h>
 #include <fcntl.h>
 
+#include <cutils/log.h>
+#include <cutils/str_parms.h>
+#include <cutils/properties.h>
+
 #include "AudioHardware.h"
 #include <audio_effects/effect_aec.h>
 #include <hardware_legacy/power.h>
@@ -580,6 +584,7 @@ void AudioHardware::setVoiceVolume_l(float volume)
     ALOGD("### setVoiceVolume_l");
 
     mVoiceVol = volume;
+    int bt_on;
 
     if ( (AudioSystem::MODE_IN_CALL == mMode) && (mSecRilLibHandle) &&
          (connectRILDIfRequired() == OK) ) {
@@ -617,8 +622,11 @@ void AudioHardware::setVoiceVolume_l(float volume)
                 break;
 
             default:
-                ALOGW("### Call volume setting error!!!0x%08x \n", device);
+            if (bt_on) {
+                type = AUDIO_DEVICE_OUT_ALL_SCO;
+            } else {
                 type = SOUND_TYPE_VOICE;
+            }
                 break;
         }
         setCallVolume(mRilClient, type, int_volume);
