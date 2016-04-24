@@ -137,8 +137,8 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # Boot Animation
-TARGET_BOOTANIMATION_TEXTURE_CACHE := false
-TARGET_BOOTANIMATION_USE_RGB565 := true
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # TARGET_DISABLE_TRIPLE_BUFFERING can be used to disable triple buffering
 # on per target basis. On crespo it is possible to do so in theory
