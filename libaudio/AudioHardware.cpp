@@ -636,7 +636,7 @@ status_t AudioHardware::setMasterVolume(float volume)
 }
 
 static const int kDumpLockRetries = 50;
-static const int kDumpLockSleep = 20000;
+static const int kDumpLockSleepUs = 20000;
 
 static bool tryLock(Mutex& mutex)
 {
@@ -646,7 +646,7 @@ static bool tryLock(Mutex& mutex)
             locked = true;
             break;
         }
-        usleep(kDumpLockSleep);
+        usleep(kDumpLockSleepUs);
     }
     return locked;
 }
