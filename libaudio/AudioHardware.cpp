@@ -734,6 +734,7 @@ status_t AudioHardware::setIncallPath_l(uint32_t device)
                 case AudioSystem::DEVICE_OUT_BLUETOOTH_SCO:
                 case AudioSystem::DEVICE_OUT_BLUETOOTH_SCO_HEADSET:
                 case AudioSystem::DEVICE_OUT_BLUETOOTH_SCO_CARKIT:
+                    ALOGD("### incall mode bluetooth route %s NR", mBluetoothNrec ? "" : "NO");
                     if (mBluetoothNrec) {
                         path = SOUND_AUDIO_PATH_BLUETOOTH;
                     } else {
