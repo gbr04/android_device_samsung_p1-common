@@ -607,7 +607,7 @@ void AudioHardware::setVoiceVolume_l(float volume)
             case AudioSystem::DEVICE_OUT_BLUETOOTH_SCO_HEADSET:
             case AudioSystem::DEVICE_OUT_BLUETOOTH_SCO_CARKIT:
                 ALOGD("### bluetooth call volume");
-                type = SOUND_TYPE_HEADSET;
+                type = SOUND_TYPE_SPEAKER;
                 break;
 
             case AudioSystem::DEVICE_OUT_WIRED_HEADSET:
