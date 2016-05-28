@@ -607,7 +607,7 @@ void AudioHardware::setVoiceVolume_l(float volume)
             case AudioSystem::DEVICE_OUT_BLUETOOTH_SCO_HEADSET:
             case AudioSystem::DEVICE_OUT_BLUETOOTH_SCO_CARKIT:
                 ALOGD("### bluetooth call volume");
-                type = SOUND_TYPE_SPEAKER;
+                type = SOUND_TYPE_BTVOICE;
                 break;
 
             case AudioSystem::DEVICE_OUT_WIRED_HEADSET:
@@ -735,7 +735,11 @@ status_t AudioHardware::setIncallPath_l(uint32_t device)
                 case AudioSystem::DEVICE_OUT_BLUETOOTH_SCO_HEADSET:
                 case AudioSystem::DEVICE_OUT_BLUETOOTH_SCO_CARKIT:
                     ALOGD("### incall mode bluetooth route %s NR", mBluetoothNrec ? "" : "NO");
+                    if (mBluetoothNrec) {
                         path = SOUND_AUDIO_PATH_BLUETOOTH;
+                    } else {
+                        path = SOUND_AUDIO_PATH_BLUETOOTH_NO_NR;
+                    }
                     break;
 
                 case AudioSystem::DEVICE_OUT_WIRED_HEADPHONE :
