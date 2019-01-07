@@ -200,7 +200,6 @@ PRODUCT_PACKAGES += \
 
 # Packages
 PRODUCT_PACKAGES += \
-    pvrsrvinit \
     DeviceSettings \
     com.android.future.usb.accessory \
     Snap
