@@ -3,8 +3,10 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := pvrsrvinit.c
-LOCAL_LDFLAGS := -L vendor/samsung/p1-common/proprietary
-LOCAL_LDLIBS := -lsrv_init -lsrv_um
+LOCAL_LDFLAGS := -L $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)
+LOCAL_ADDITIONAL_LIBS := libsrv_init libsrv_um
+LOCAL_ALLOWED_LDLIBS := $(LOCAL_ADDITIONAL_LIBS:lib%=-l%)
+LOCAL_LDFLAGS += $(LOCAL_ALLOWED_LDLIBS)
 LOCAL_MODULE_PATH := $(TARGET_OUT)/bin/
 LOCAL_MODULE := pvrsrvinit
 LOCAL_MODULE_TAGS := optional
