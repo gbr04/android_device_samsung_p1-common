@@ -32,6 +32,8 @@ LOCAL_CERTIFICATE := platform
 # Required so that symbols used by the jni library doesn't get stripped out
 LOCAL_PROGUARD_ENABLED := disabled
 
+LOCAL_SDK_VERSION := current
+
 include $(BUILD_PACKAGE)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
