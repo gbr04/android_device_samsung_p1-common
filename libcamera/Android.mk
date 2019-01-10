@@ -45,6 +45,8 @@ LOCAL_SRC_FILES:= \
 LOCAL_SHARED_LIBRARIES:= libutils libcutils libbinder liblog libcamera_client libhardware
 LOCAL_SHARED_LIBRARIES+= libs3cjpeg
 
+LOCAL_HEADER_LIBRARIES := libnativebase_headers
+
 LOCAL_MODULE := camera.s5pc110
 
 LOCAL_MODULE_TAGS := optional

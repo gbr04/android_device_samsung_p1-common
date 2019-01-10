@@ -360,7 +360,7 @@ static int fimc_v4l2_querybuf(int fp, struct fimc_buffer *buffer, enum v4l2_buf_
     buffer->length = v4l2_buf.length;
     if ((buffer->start = (char *)mmap(0, v4l2_buf.length,
                                          PROT_READ | PROT_WRITE, MAP_SHARED,
-                                         fp, v4l2_buf.m.offset)) < 0) {
+                                         fp, v4l2_buf.m.offset)) != (void *)NULL) {
          ALOGE("%s %d] mmap() failed\n",__func__, __LINE__);
          return -1;
     }
@@ -549,7 +549,6 @@ SecCamera::SecCamera() :
 #endif // ENABLE_ESD_PREVIEW_CHECK
 {
     m_params = (struct sec_cam_parm*)&m_streamparm.parm.raw_data;
-    struct v4l2_captureparm capture;
     m_params->capture.timeperframe.numerator = 1;
     m_params->capture.timeperframe.denominator = 0;
     m_params->contrast = -1;
@@ -740,7 +739,7 @@ int SecCamera::startPreview(void)
         CHECK(ret);
     }
 
-    ret = fimc_v4l2_s_ctrl(m_cam_fd, V4L2_CID_CAMERA_CHECK_FLIP, 0);
+    ret = fimc_v4l2_s_ctrl(m_cam_fd, V4L2_CID_CAMERA_RETURN_FOCUS, 0);
     CHECK(ret);
 
     /* start with all buffers in queue */
@@ -788,7 +787,7 @@ int SecCamera::startPreview(void)
         CHECK(ret);
     }
 
-    ret = fimc_v4l2_s_ctrl(m_cam_fd, V4L2_CID_CAMERA_APP_CHECK, 0);
+    ret = fimc_v4l2_s_ctrl(m_cam_fd, V4L2_CID_CAMERA_GET_FLASH_ONOFF, 0);
     CHECK(ret);
 
     ret = fimc_v4l2_s_parm(m_cam_fd, &m_streamparm);
@@ -1160,8 +1159,6 @@ int SecCamera::setSnapshotCmd(void)
 
 int SecCamera::endSnapshot(void)
 {
-    int ret;
-
     ALOGI("%s :", __func__);
     if (m_capture_buf.start) {
         munmap(m_capture_buf.start, m_capture_buf.length);
@@ -1333,8 +1330,6 @@ int SecCamera::getSnapshotAndJpeg(unsigned char *yuv_buf, unsigned char *jpeg_bu
     ALOGV("%s :", __func__);
 
     int index;
-    //unsigned int addr;
-    unsigned char *addr;
     int ret = 0;
 
     LOG_TIME_DEFINE(0)
@@ -1607,7 +1602,7 @@ int SecCamera::getAutoFocusResult(void)
 {
     int af_result;
 
-    af_result = fimc_v4l2_g_ctrl(m_cam_fd, V4L2_CID_CAMERA_AUTO_FOCUS_RESULT);
+    af_result = fimc_v4l2_g_ctrl(m_cam_fd, V4L2_CID_CAMERA_AUTO_FOCUS_RESULT_FIRST);
 
     ALOGV("%s : returning %d", __func__, af_result);
 
@@ -1822,12 +1817,6 @@ int SecCamera::setAntiBanding(int anti_banding)
 int SecCamera::setSceneMode(int scene_mode)
 {
     ALOGV("%s(scene_mode(%d))", __func__, scene_mode);
-
-    if (scene_mode <= SCENE_MODE_BASE || SCENE_MODE_MAX <= scene_mode) {
-        ALOGE("ERR(%s):Invalid scene_mode (%d)", __func__, scene_mode);
-        return -1;
-    }
-
     if (m_params->scene_mode != scene_mode) {
         m_params->scene_mode = scene_mode;
         if (m_flag_camera_start) {
@@ -2642,7 +2631,7 @@ void SecCamera::setExifChangedAttribute()
     mExifInfo.brightness.num = bv*EXIF_DEF_APEX_DEN;
     mExifInfo.brightness.den = EXIF_DEF_APEX_DEN;
     //3 Exposure Bias
-    if (m_params->scene_mode == SCENE_MODE_BEACH_SNOW) {
+    if (m_params->scene_mode == V4L2_SCENE_MODE_BEACH_SNOW) {
         mExifInfo.exposure_bias.num = EXIF_DEF_APEX_DEN;
         mExifInfo.exposure_bias.den = EXIF_DEF_APEX_DEN;
     } else {
@@ -2679,14 +2668,11 @@ void SecCamera::setExifChangedAttribute()
         mExifInfo.white_balance = EXIF_WB_MANUAL;
     //3 Scene Capture Type
     switch (m_params->scene_mode) {
-    case SCENE_MODE_PORTRAIT:
+    case V4L2_SCENE_MODE_PORTRAIT:
         mExifInfo.scene_capture_type = EXIF_SCENE_PORTRAIT;
         break;
-    case SCENE_MODE_LANDSCAPE:
+    case v4L2_SCENE_MODE_LANDSCAPE:
         mExifInfo.scene_capture_type = EXIF_SCENE_LANDSCAPE;
-        break;
-    case SCENE_MODE_NIGHTSHOT:
-        mExifInfo.scene_capture_type = EXIF_SCENE_NIGHT;
         break;
     default:
         mExifInfo.scene_capture_type = EXIF_SCENE_STANDARD;
