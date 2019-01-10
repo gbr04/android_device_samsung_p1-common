@@ -1,6 +1,8 @@
 ###########################
 # OmniROM Aries sepolicy
 #
+type gpsd;
+
 allow gpsd self:process { execmem };
 allow gpsd properties_device:file { execute };
 allow gpsd sysfs_wake_lock:file { read write open };

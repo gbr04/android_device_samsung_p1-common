@@ -1,6 +1,7 @@
 ###########################
 # OmniROM P1 sepolicy
 #
+type sysfs_writable;
 # allow system_app sysfs_ksm:dir { search };
 
 allow system_app sysfs_writable:file { getattr write open read };

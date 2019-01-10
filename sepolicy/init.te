@@ -1,6 +1,9 @@
 ###########################
 # OmniROM Aries sepolicy
 #
+type adb_device;
+type gps_device;
+
 # unconfined_domain(init)
 # allow init rootfs:file execute_no_trans;
 
