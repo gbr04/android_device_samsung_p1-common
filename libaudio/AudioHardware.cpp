@@ -783,14 +783,14 @@ struct pcm *AudioHardware::openPcmOut_l()
         unsigned flags = PCM_OUT;
 
         struct pcm_config config = {
-            channels : 2,
-            rate : AUDIO_HW_OUT_SAMPLERATE,
-            period_size : AUDIO_HW_OUT_PERIOD_SZ,
-            period_count : AUDIO_HW_OUT_PERIOD_CNT,
-            format : PCM_FORMAT_S16_LE,
-            start_threshold : 0,
-            stop_threshold : 0,
-            silence_threshold : 0,
+            .channels = 2,
+            .rate = AUDIO_HW_OUT_SAMPLERATE,
+            .period_size = AUDIO_HW_OUT_PERIOD_SZ,
+            .period_count = AUDIO_HW_OUT_PERIOD_CNT,
+            .format = PCM_FORMAT_S16_LE,
+            .start_threshold = 0,
+            .stop_threshold = 0,
+            .silence_threshold = 0,
         };
 
         TRACE_DRIVER_IN(DRV_PCM_OPEN)
@@ -945,7 +945,7 @@ uint32_t AudioHardware::getInputSampleRate(uint32_t sampleRate)
     size_t size = sizeof(inputConfigTable)/sizeof(uint32_t)/INPUT_CONFIG_CNT;
 
     for (i = 0, prevDelta = 0xFFFFFFFF; i < size; i++, prevDelta = delta) {
-        delta = abs(sampleRate - inputConfigTable[i][INPUT_CONFIG_SAMPLE_RATE]);
+        delta = fabs(sampleRate - inputConfigTable[i][INPUT_CONFIG_SAMPLE_RATE]);
         if (delta > prevDelta) break;
     }
     // i is always > 0 here
@@ -1566,8 +1566,8 @@ ssize_t AudioHardware::AudioStreamInALSA::readFrames(void* buffer, ssize_t frame
                     &framesRd);
         } else {
             struct resampler_buffer buf = {
-                    { raw : NULL, },
-                    frame_count : framesRd,
+                    { .raw = NULL, },
+                    .frame_count = framesRd,
             };
             getNextBuffer(&buf);
             if (buf.raw != NULL) {
@@ -1962,14 +1962,14 @@ status_t AudioHardware::AudioStreamInALSA::open_l()
     unsigned flags = PCM_IN;
 
     struct pcm_config config = {
-        channels : mChannelCount,
-        rate : AUDIO_HW_IN_SAMPLERATE,
-        period_size : AUDIO_HW_IN_PERIOD_SZ,
-        period_count : AUDIO_HW_IN_PERIOD_CNT,
-        format : PCM_FORMAT_S16_LE,
-        start_threshold : 0,
-        stop_threshold : 0,
-        silence_threshold : 0,
+        .channels = mChannelCount,
+        .rate = AUDIO_HW_IN_SAMPLERATE,
+        .period_size = AUDIO_HW_IN_PERIOD_SZ,
+        .period_count = AUDIO_HW_IN_PERIOD_CNT,
+        .format = PCM_FORMAT_S16_LE,
+        .start_threshold = 0,
+        .stop_threshold = 0,
+        .silence_threshold = 0,
     };
 
     ALOGV("open pcm_in driver");

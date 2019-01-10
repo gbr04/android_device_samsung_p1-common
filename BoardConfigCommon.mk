@@ -33,7 +33,6 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a8
 TARGET_CPU_VARIANT := cortex-a8
-KERNEL_TOOLCHAIN := "./prebuilts/gcc/$(strip $(HOST_OS))-x86/arm/arm-linux-androideabi-4.9/bin/"
 
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 
